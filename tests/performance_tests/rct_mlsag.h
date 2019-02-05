@@ -32,16 +32,18 @@
 
 #include "ringct/rctSigs.h"
 #include "cryptonote_basic/cryptonote_basic.h"
+#include "ringct/bulletproofs.h"
 
 #include "single_tx_test_base.h"
 
-template<size_t inputs, size_t ring_size, bool ver>
+template<size_t inputs, size_t outputs, size_t ring_size, bool ver>
 class test_ringct_mlsag : public single_tx_test_base
 {
 public:
   static const size_t cols = ring_size;
-  static const size_t rows = inputs;
-  static const size_t loop_count = 100;
+  static const size_t rows = 2;
+  static const size_t loop_count = 10;
+  static const size_t n_amounts = outputs;
 
   bool init()
   {
@@ -67,16 +69,25 @@ public:
     }
     IIccss = MLSAG_Gen(rct::identity(), P, sk, NULL, NULL, ind, rows, hw::get_device("default"));
 
+    proof = rct::bulletproof_PROVE(std::vector<uint64_t>(n_amounts, 749327532984), rct::skvGen(n_amounts));
+
     return true;
   }
 
   bool test()
   {
+  bool ret = true;
+  for (size_t i = 0; i < inputs; i++) {
+        if (ver)
+          ret &= MLSAG_Ver(rct::identity(), P, IIccss, rows);
+        else
+          MLSAG_Gen(rct::identity(), P, sk, NULL, NULL, ind, rows, hw::get_device("default"));
+  }
     if (ver)
-      MLSAG_Ver(rct::identity(), P, IIccss, rows);
+      ret &= rct::bulletproof_VERIFY(proof);
     else
-      MLSAG_Gen(rct::identity(), P, sk, NULL, NULL, ind, rows, hw::get_device("default"));
-    return true;
+      rct::bulletproof_PROVE(std::vector<uint64_t>(n_amounts, 749327532984), rct::skvGen(n_amounts));
+    return ret;
   }
 
 private:
@@ -84,4 +95,5 @@ private:
   rct::keyM P;
   size_t ind;
   rct::mgSig IIccss;
+  rct::Bulletproof proof;
 };

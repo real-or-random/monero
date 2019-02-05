@@ -100,7 +100,7 @@ int main(int argc, char** argv)
 
   performance_timer timer;
   timer.start();
-
+#if 0
   TEST_PERFORMANCE3(filter, p, test_construct_tx, 1, 1, false);
   TEST_PERFORMANCE3(filter, p, test_construct_tx, 1, 2, false);
   TEST_PERFORMANCE3(filter, p, test_construct_tx, 1, 10, false);
@@ -196,16 +196,141 @@ int main(int argc, char** argv)
   TEST_PERFORMANCE0(filter, p, test_cn_slow_hash);
   TEST_PERFORMANCE1(filter, p, test_cn_fast_hash, 32);
   TEST_PERFORMANCE1(filter, p, test_cn_fast_hash, 16384);
+#endif
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 2);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 4);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 8);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 16);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 32);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 64);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 128);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 256);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 512);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 1024);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 2);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 4);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 8);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 16);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 32);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 64);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 128);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 256);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 512);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 1024);
 
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 3, false);
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 5, false);
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 10, false);
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 100, false);
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 3, true);
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 5, true);
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 10, true);
-  TEST_PERFORMANCE3(filter, p, test_ringct_mlsag, 1, 100, true);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 2048);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 4096);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 1, 2, 8192);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 2048);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 4096);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 16, true, 2, 2, 8192);
 
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 4);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 8);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 16);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 32);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 64);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 128);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 256);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 512);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 1024);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 2048);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 4096);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 1, 2, 8192);
+
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 4);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 8);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 16);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 32);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 64);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 128);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 256);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 512);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 1024);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 2048);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 4096);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, true, 2, 2, 8192);
+
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 2);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 4);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 8);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 16);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 32);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 64);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 128);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 256);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 512);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 1024);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 2048);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 4096);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 1, 2, 8192);
+
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 2);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 4);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 8);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 16);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 32);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 64);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 128);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 256);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 512);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 1024);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 2048);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 4096);
+  TEST_PERFORMANCE5(filter, p, test_omniring_estimate, 1, false, 2, 2, 8192);
+
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,    4, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,    8, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,   16, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,   32, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,   64, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,  128, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,  256, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,  512, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 1024, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 2048, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 4096, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 8192, true);
+
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,    4, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,    8, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,   16, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,   32, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,   64, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,  128, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,  256, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,  512, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 1024, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 2048, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 4096, true);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 8192, true);
+
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,    4, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,    8, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,   16, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,   32, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,   64, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,  128, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,  256, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2,  512, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 1024, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 2048, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 4096, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 1, 2, 8192, false);
+
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,    4, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,    8, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,   16, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,   32, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,   64, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,  128, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,  256, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2,  512, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 1024, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 2048, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 4096, false);
+  TEST_PERFORMANCE4(filter, p, test_ringct_mlsag, 2, 2, 8192, false);
+#if 0
   TEST_PERFORMANCE2(filter, p, test_equality, memcmp32, true);
   TEST_PERFORMANCE2(filter, p, test_equality, memcmp32, false);
   TEST_PERFORMANCE2(filter, p, test_equality, verify32, false);
@@ -213,7 +338,8 @@ int main(int argc, char** argv)
 
   TEST_PERFORMANCE1(filter, p, test_range_proof, true);
   TEST_PERFORMANCE1(filter, p, test_range_proof, false);
-
+#endif
+#if 0
   TEST_PERFORMANCE2(filter, p, test_bulletproof, true, 1); // 1 bulletproof with 1 amount
   TEST_PERFORMANCE2(filter, p, test_bulletproof, false, 1);
 
@@ -263,7 +389,7 @@ int main(int argc, char** argv)
   TEST_PERFORMANCE1(filter, p, test_crypto_ops, op_isInMainSubgroup);
   TEST_PERFORMANCE1(filter, p, test_crypto_ops, op_zeroCommitUncached);
   TEST_PERFORMANCE1(filter, p, test_crypto_ops, op_zeroCommitCached);
-
+#endif
   TEST_PERFORMANCE2(filter, p, test_multiexp, multiexp_bos_coster, 2);
   TEST_PERFORMANCE2(filter, p, test_multiexp, multiexp_bos_coster, 4);
   TEST_PERFORMANCE2(filter, p, test_multiexp, multiexp_bos_coster, 8);

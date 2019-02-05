@@ -33,6 +33,37 @@
 #include "ringct/rctSigs.h"
 #include "ringct/bulletproofs.h"
 
+template<size_t aggregate_size, bool a_verify, size_t inputs, size_t outputs, size_t ringsize>
+class test_omniring_estimate
+{
+public:
+  static const size_t n_amounts = (3*inputs + ringsize*(1+inputs) + 2*64 + 3)*aggregate_size/64 + 1; // we add 1 to be conservative with the rounding
+
+  static const size_t approx_loop_count = 100 / n_amounts;
+  static const size_t loop_count = 10; // (approx_loop_count >= 10 ? approx_loop_count : 10) / (a_verify ? 1 : 5);
+  static const bool verify = a_verify;
+
+  bool init()
+  {
+//      for (size_t i = 0; i < aggregate_size; ++i)
+        proofs.push_back(rct::bulletproof_PROVE(std::vector<uint64_t>(n_amounts, 749327532984), rct::skvGen(n_amounts)));
+    return true;
+  }
+
+  bool test()
+  {
+    bool ret = true;
+        if (verify)
+          ret = rct::bulletproof_VERIFY(proofs);
+        else
+          rct::bulletproof_PROVE(std::vector<uint64_t>(n_amounts, 749327532984), rct::skvGen(n_amounts));
+    return ret;
+  }
+
+private:
+  std::vector<rct::Bulletproof> proofs;
+};
+
 template<bool a_verify, size_t n_amounts>
 class test_bulletproof
 {
